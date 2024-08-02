@@ -9,7 +9,7 @@ x64/
 .vscode/
 *.dir/
 *.user
-
+build/
 
 simpletdengine/lib
 simpletdengine/Debug
