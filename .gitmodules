@@ -1,0 +1,6 @@
+[submodule "simpletdengine/thirdparty/sdl"]
+	path = simpletdengine/thirdparty/sdl
+	url = https://github.com/libsdl-org/SDL
+[submodule "simpletdengine/thirdparty/glm"]
+	path = simpletdengine/thirdparty/glm
+	url = https://github.com/g-truc/glm

@@ -1,0 +1,16 @@
+CMakeFiles
+*.vcxproj
+*.filters
+cmake_install.cmake
+CMakeCache.txt
+*.sln
+x64/
+.vs/
+.vscode/
+*.dir/
+*.user
+
+
+simpletdengine/lib
+simpletdengine/Debug
+simpletdgame/Debug
