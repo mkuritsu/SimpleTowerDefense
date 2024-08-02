@@ -3,10 +3,11 @@
 #include <string>
 #include <cstdint>
 #include <memory>
+#include <simpletdengine/defines.h>
 
 namespace simpletdengine
 {
-	class Window
+	SIMPLETDENGINE_API class Window
 	{
 	public:
 
@@ -15,8 +16,6 @@ namespace simpletdengine
 		virtual uint32_t GetHeight() const = 0;
 
 		virtual void PollEvents() = 0;
-
-		virtual void Destroy() const = 0;
 
 		virtual void Quit() = 0;
 

@@ -1,10 +1,9 @@
 #include <iostream>
-#include <simpletdengine/game.h>
+#include <simpletdgame/simpletdgame.h>
 
 int main()
 {
-    simpletdengine::GameWindowOptions options = simpletdengine::GameWindowOptions::Default();
-    simpletdengine::Game game(options);
+    simpletdgame::SimpleTowerDefense game;
     game.Run();
     return 0;
 }

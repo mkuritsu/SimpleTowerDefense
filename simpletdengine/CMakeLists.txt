@@ -11,6 +11,7 @@ set(ENGINE_SOURCES
     src/windowing/window.cpp
     src/windowing/impl/sdl_window.cpp
     src/game.cpp
+    include/simpletdengine/defines.h
     include/simpletdengine/game.h
     include/simpletdengine/windowing/window.h
     include/simpletdengine/windowing/impl/sdl_window.h
@@ -33,15 +34,19 @@ set(ENGINE_LIBS
 
 set(ENGINE_DEFINES)
 
+IF (SIMPLETDENGINE_BUILD_WINDOW_BACKED STREQUAL "SDL")
+    message("[simpletdengine] Using SDL backend")
+    set(ENGINE_DEFINES ${ENGINE_DEFINES} SIMPLETDENGINE_WINDOW_SDL)
+ENDIF ()
+
+IF (BUILD_SHARED_LIBS)
+    set(ENGINE_DEFINES ${ENGINE_DEFINES} SIMPLETDENGINE_BUILD_DLL)
+ENDIF ()
+
 add_library(simpletdengine ${ENGINE_SOURCES})
 
 target_include_directories(simpletdengine PRIVATE ${ENGINE_INCLUDES})
 
 target_link_libraries(simpletdengine PRIVATE ${ENGINE_LIBS})
-
-IF (SIMPLETDENGINE_BUILD_WINDOW_BACKED STREQUAL "SDL")
-    message("[simpletdengine] Using SDL backend")
-    set(ENGINE_DEFINES ${ENGINE_DEFINES} SIMPLETDENGINE_WINDOW_SDL)
-ENDIF ()
 
 target_compile_definitions(simpletdengine PRIVATE ${ENGINE_DEFINES})

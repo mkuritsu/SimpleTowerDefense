@@ -27,6 +27,12 @@ namespace simpletdengine
 		}
 	}
 
+	SDLWindow::~SDLWindow()
+	{
+		SDL_DestroyWindow(m_Window);
+		SDL_Quit();
+	}
+
 	uint32_t SDLWindow::GetWidth() const
 	{
 		int width;
@@ -51,11 +57,6 @@ namespace simpletdengine
 				m_ShoudlQuit = true;
 			}
 		}
-	}
-
-	void SDLWindow::Destroy() const
-	{
-		SDL_DestroyWindow(m_Window);
 	}
 
 	void SDLWindow::Quit()

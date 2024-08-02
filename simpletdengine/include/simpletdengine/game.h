@@ -3,26 +3,18 @@
 #include <string>
 #include <memory>
 #include <simpletdengine/windowing/window.h>
+#include <simpletdengine/defines.h>
 
 namespace simpletdengine
 {
-	struct GameWindowOptions
+	SIMPLETDENGINE_API struct GameWindowOptions
 	{
-		std::string title;
-		uint32_t width;
-		uint32_t height;
-
-		static GameWindowOptions Default()
-		{
-			GameWindowOptions options;
-			options.title = "simpletdengine";
-			options.width = 854;
-			options.height = 480;
-			return options;
-		}
+		std::string title = "simpletdengine";
+		uint32_t width = 854;
+		uint32_t height = 480;
 	};
 
-	class Game
+	SIMPLETDENGINE_API class Game
 	{
 	public:
 		Game(const GameWindowOptions& options);

@@ -1,14 +1,17 @@
 #pragma once
 
 #include <simpletdengine/windowing/window.h>
+#include <simpletdengine/defines.h>
 #include <SDL3/SDL.h>
 
 namespace simpletdengine
 {
-	class SDLWindow : public Window
+	SIMPLETDENGINE_API class SDLWindow : public Window
 	{
 	public:
 		SDLWindow(const std::string& title, uint32_t width, uint32_t height);
+
+		~SDLWindow();
 
 		uint32_t GetWidth() const;
 		

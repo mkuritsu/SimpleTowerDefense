@@ -2,10 +2,21 @@ project(simpletdgame CXX)
 
 set(GAME_SOURCES
     src/main.cpp
+    src/simple_tower_defense.cpp
+    include/simpletdgame/simple_tower_defense.h
+)
+
+set(GAME_INCLUDES
+    include
+    ../simpletdengine/include
+)
+
+set(GAME_LIBS
+    simpletdengine
 )
 
 add_executable(simpletdgame ${GAME_SOURCES})
 
-target_link_libraries(simpletdgame PRIVATE simpletdengine)
+target_link_libraries(simpletdgame PRIVATE ${GAME_LIBS})
 
-target_include_directories(simpletdgame PRIVATE ../simpletdengine/include)
+target_include_directories(simpletdgame PRIVATE ${GAME_INCLUDES})

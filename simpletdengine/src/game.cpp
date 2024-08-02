@@ -15,7 +15,6 @@ namespace simpletdengine
 			Draw(delta);
 			m_Window->SwapBuffers();
 		}
-		m_Window->Destroy();
 	}
 
 	void Game::Init() { }
