@@ -2,8 +2,8 @@ project(simpletdgame CXX)
 
 set(GAME_SOURCES
     src/main.cpp
-    src/simple_tower_defense.cpp
-    include/simpletdgame/simple_tower_defense.h
+    src/simpletdgame.cpp
+    include/simpletdgame/simpletdgame.h
 )
 
 set(GAME_INCLUDES

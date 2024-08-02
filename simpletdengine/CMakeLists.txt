@@ -8,13 +8,25 @@ add_subdirectory(thirdparty/sdl lib/sdl)
 add_subdirectory(thirdparty/stb_image lib/stb_image)
 
 set(ENGINE_SOURCES
-    src/windowing/window.cpp
+    src/rendering/opengl/opengl_buffer.cpp
+    src/rendering/opengl/opengl_graphics_api.cpp
+    src/rendering/opengl/opengl_utils.cpp
+    src/rendering/buffer.cpp
+    src/rendering/renderer.cpp
     src/windowing/impl/sdl_window.cpp
+    src/windowing/window.cpp
     src/game.cpp
+
+    include/simpletdengine/rendering/opengl/opengl_buffer.h
+    include/simpletdengine/rendering/opengl/opengl_graphics_api.h
+    include/simpletdengine/rendering/opengl/opengl_utils.h
+    include/simpletdengine/rendering/buffer.h
+    include/simpletdengine/rendering/graphics_api.h
+    include/simpletdengine/rendering/renderer.h
+    include/simpletdengine/windowing/impl/sdl_window.h
+    include/simpletdengine/windowing/window.h
     include/simpletdengine/defines.h
     include/simpletdengine/game.h
-    include/simpletdengine/windowing/window.h
-    include/simpletdengine/windowing/impl/sdl_window.h
 )
 
 set(ENGINE_INCLUDES

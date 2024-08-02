@@ -13,21 +13,19 @@ namespace simpletdengine
 
 		~SDLWindow();
 
-		uint32_t GetWidth() const;
+		uint32_t GetWidth() const override;
 		
-		uint32_t GetHeight() const;
+		uint32_t GetHeight() const override;
 
-		void PollEvents();
+		void PollEvents() override;
 
-		void Destroy() const;
+		void Quit() override;
 
-		void Quit();
+		void SwapBuffers() override;
 
-		void SwapBuffers();
+		bool ShouldQuit() const override;
 
-		bool ShouldQuit() const;
-
-		float GetTime() const;
+		float GetTime() const override;
 
 	private:
 		bool m_ShoudlQuit = false;
