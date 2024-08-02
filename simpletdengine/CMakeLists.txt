@@ -11,7 +11,10 @@ set(ENGINE_SOURCES
     src/rendering/opengl/opengl_buffer.cpp
     src/rendering/opengl/opengl_graphics_api.cpp
     src/rendering/opengl/opengl_utils.cpp
+    src/rendering/opengl/opengl_vertex_array.cpp
     src/rendering/buffer.cpp
+    src/rendering/buffer_layout.cpp
+    src/rendering/layout_element.cpp
     src/rendering/renderer.cpp
     src/windowing/impl/sdl_window.cpp
     src/windowing/window.cpp
@@ -20,9 +23,13 @@ set(ENGINE_SOURCES
     include/simpletdengine/rendering/opengl/opengl_buffer.h
     include/simpletdengine/rendering/opengl/opengl_graphics_api.h
     include/simpletdengine/rendering/opengl/opengl_utils.h
+    include/simpletdengine/rendering/opengl/opengl_vertex_array.h
     include/simpletdengine/rendering/buffer.h
+    include/simpletdengine/rendering/buffer_layout.h
     include/simpletdengine/rendering/graphics_api.h
+    include/simpletdengine/rendering/layout_element.h
     include/simpletdengine/rendering/renderer.h
+    include/simpletdengine/rendering/vertex_array.h
     include/simpletdengine/windowing/impl/sdl_window.h
     include/simpletdengine/windowing/window.h
     include/simpletdengine/defines.h

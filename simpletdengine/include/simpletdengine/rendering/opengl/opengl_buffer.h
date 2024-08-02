@@ -10,6 +10,8 @@ namespace simpletdengine
     public:
         OpenGLBuffer(BufferType type, void* data, size_t size);
 
+        ~OpenGLBuffer() override;
+
         void Bind() const override;
     };
 }

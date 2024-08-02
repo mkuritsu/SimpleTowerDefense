@@ -11,6 +11,11 @@ namespace simpletdengine
         glBufferData(BufferTypeToGLType(m_Type), size, data, GL_STATIC_DRAW);
     }
 
+    OpenGLBuffer::~OpenGLBuffer()
+    {
+        glDeleteBuffers(1, &m_ID);
+    }
+
     void OpenGLBuffer::Bind() const
     {
         glBindBuffer(BufferTypeToGLType(m_Type), m_ID);
