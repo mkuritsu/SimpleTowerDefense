@@ -15,6 +15,8 @@ set(GAME_LIBS
     simpletdengine
 )
 
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${GAME_SOURCES})
+
 add_executable(simpletdgame ${GAME_SOURCES})
 
 target_link_libraries(simpletdgame PRIVATE ${GAME_LIBS})

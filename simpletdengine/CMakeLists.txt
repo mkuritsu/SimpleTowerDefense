@@ -2,10 +2,10 @@ project(simpletdengine CXX)
 
 set(SIMPLETDENGINE_BUILD_WINDOW_BACKED "SDL" CACHE STRING "The window backend to use")
 
-add_subdirectory(thirdparty/glad lib/glad)
-add_subdirectory(thirdparty/glm lib/glm)
-add_subdirectory(thirdparty/sdl lib/sdl)
-add_subdirectory(thirdparty/stb_image lib/stb_image)
+add_subdirectory(thirdparty/glad)
+add_subdirectory(thirdparty/glm)
+add_subdirectory(thirdparty/sdl)
+add_subdirectory(thirdparty/stb_image)
 
 set(ENGINE_SOURCES
     src/rendering/opengl/opengl_buffer.cpp
@@ -35,6 +35,8 @@ set(ENGINE_SOURCES
     include/simpletdengine/defines.h
     include/simpletdengine/game.h
 )
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ENGINE_SOURCES})
 
 set(ENGINE_INCLUDES
     thirdparty/glad/include
