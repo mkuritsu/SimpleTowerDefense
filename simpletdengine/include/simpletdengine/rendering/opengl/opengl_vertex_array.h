@@ -9,7 +9,7 @@ namespace simpletdengine
 	public:
 		OpenGLVertexArray();
 
-		~OpenGLVertexArray() override;
+		~OpenGLVertexArray();
 
 		void Bind() const override;
 

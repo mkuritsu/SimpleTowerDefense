@@ -4,6 +4,8 @@
 
 namespace simpletdengine
 {
+    std::unique_ptr<GraphicsAPI> Renderer::s_GraphicsAPI = nullptr;
+
     void Renderer::Init(RenderingAPI api)
     {
         switch (api)

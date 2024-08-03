@@ -13,4 +13,13 @@ namespace simpletdengine
             return GL_ELEMENT_ARRAY_BUFFER;
         }
     }
+
+    GLenum LayoutElementTypeToGLType(LayoutElementType type)
+    {
+        switch(type)
+        {
+        case LayoutElementType::FLOAT:
+            return GL_FLOAT;
+        }
+    }
 }

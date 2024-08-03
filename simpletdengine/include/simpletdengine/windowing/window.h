@@ -7,7 +7,7 @@
 
 namespace simpletdengine
 {
-	SIMPLETDENGINE_API class Window
+	class SIMPLETDENGINE_API Window
 	{
 	public:
 

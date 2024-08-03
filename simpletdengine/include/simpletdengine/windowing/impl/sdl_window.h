@@ -6,7 +6,7 @@
 
 namespace simpletdengine
 {
-	SIMPLETDENGINE_API class SDLWindow : public Window
+	class SDLWindow : public Window
 	{
 	public:
 		SDLWindow(const std::string& title, uint32_t width, uint32_t height);

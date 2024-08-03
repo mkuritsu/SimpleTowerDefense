@@ -9,6 +9,7 @@ namespace simpletdengine
 {
     class GraphicsAPI
     {
+    public:
         virtual std::shared_ptr<Buffer> CreateBuffer(BufferType type, void* data, size_t size) const = 0;
 
         virtual std::shared_ptr<VertexArray> CreateVertexArray() const = 0;

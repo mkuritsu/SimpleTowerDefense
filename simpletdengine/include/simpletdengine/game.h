@@ -7,14 +7,14 @@
 
 namespace simpletdengine
 {
-	SIMPLETDENGINE_API struct GameWindowOptions
+	struct SIMPLETDENGINE_API GameWindowOptions
 	{
 		std::string title = "simpletdengine";
 		uint32_t width = 854;
 		uint32_t height = 480;
 	};
 
-	SIMPLETDENGINE_API class Game
+	class SIMPLETDENGINE_API Game
 	{
 	public:
 		Game(const GameWindowOptions& options);

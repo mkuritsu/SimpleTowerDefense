@@ -8,8 +8,6 @@ namespace simpletdengine
 	class VertexArray
 	{
 	public:
-		virtual ~VertexArray() = 0;
-
 		virtual void Bind() const = 0;
 
 		virtual void SetLayout(const BufferLayout& layout) const = 0;

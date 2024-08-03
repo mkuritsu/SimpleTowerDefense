@@ -1,5 +1,9 @@
 project(simpletdengine CXX)
 
+option(SIMPLETDENGINE_BUILD_SHARED "Should build engine as a dynamic link library" OFF)
+
+message("[simpletdengine] BUILD SHARED: ${SIMPLETDENGINE_BUILD_SHARED}")
+
 set(SIMPLETDENGINE_BUILD_WINDOW_BACKED "SDL" CACHE STRING "The window backend to use")
 
 add_subdirectory(thirdparty/glad)
@@ -38,6 +42,13 @@ set(ENGINE_SOURCES
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ENGINE_SOURCES})
 
+foreach (FILE ${ENGINE_SOURCES})
+    if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${FILE}")
+        message("Source file '${FILE}' not found creating it")
+        file(WRITE "${FILE}")
+    endif ()
+endforeach ()
+
 set(ENGINE_INCLUDES
     thirdparty/glad/include
     thirdparty/sdl/include
@@ -53,21 +64,15 @@ set(ENGINE_LIBS
     SDL3::SDL3
 )
 
-set(ENGINE_DEFINES)
-
-IF (SIMPLETDENGINE_BUILD_WINDOW_BACKED STREQUAL "SDL")
-    message("[simpletdengine] Using SDL backend")
-    set(ENGINE_DEFINES ${ENGINE_DEFINES} SIMPLETDENGINE_WINDOW_SDL)
-ENDIF ()
-
-IF (BUILD_SHARED_LIBS)
-    set(ENGINE_DEFINES ${ENGINE_DEFINES} SIMPLETDENGINE_BUILD_DLL)
-ENDIF ()
-
-add_library(simpletdengine ${ENGINE_SOURCES})
+if (SIMPLETDENGINE_BUILD_SHARED)
+    add_library(simpletdengine SHARED ${ENGINE_SOURCES})
+    target_compile_definitions(simpletdengine PRIVATE SIMPLETDENGINE_DLL_EXPORT PUBLIC SIMPLETDENGINE_DLL_IMPORT)
+else ()
+    add_library(simpletdengine ${ENGINE_SOURCES})
+endif ()
 
 target_include_directories(simpletdengine PRIVATE ${ENGINE_INCLUDES})
 
 target_link_libraries(simpletdengine PRIVATE ${ENGINE_LIBS})
 
-target_compile_definitions(simpletdengine PRIVATE ${ENGINE_DEFINES})
+target_compile_definitions(simpletdengine PRIVATE SIMPLETDENGINE_WINDOW_SDL)

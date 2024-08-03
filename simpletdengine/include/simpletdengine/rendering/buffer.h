@@ -13,8 +13,6 @@ namespace simpletdengine
     class Buffer
     {
     public:
-        virtual ~Buffer() = 0;
-
         uint32_t GetID() const;
 
         virtual void Bind() const = 0;
