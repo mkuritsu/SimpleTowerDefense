@@ -17,6 +17,8 @@ namespace simpletdengine
 
         static const std::unique_ptr<GraphicsAPI>& GetAPI();
 
+        static void Draw(const std::shared_ptr<VertexArray>& object, uint32_t indicesCount, const std::shared_ptr<Shader>& shader);
+
     private:
         static std::unique_ptr<GraphicsAPI> s_GraphicsAPI;
     };

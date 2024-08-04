@@ -1,34 +1,34 @@
 #pragma once
 
-#include <simpletdengine/windowing/window.h>
-#include <simpletdengine/defines.h>
 #include <SDL3/SDL.h>
+#include <simpletdengine/defines.h>
+#include <simpletdengine/windowing/window.h>
 
 namespace simpletdengine
 {
-	class SDLWindow : public Window
-	{
-	public:
-		SDLWindow(const std::string& title, uint32_t width, uint32_t height);
+    class SDLWindow : public Window
+    {
+    public:
+        SDLWindow(const std::string& title, uint32_t width, uint32_t height);
 
-		~SDLWindow();
+        ~SDLWindow();
 
-		uint32_t GetWidth() const override;
-		
-		uint32_t GetHeight() const override;
+        uint32_t GetWidth() const override;
 
-		void PollEvents() override;
+        uint32_t GetHeight() const override;
 
-		void Quit() override;
+        void PollEvents() override;
 
-		void SwapBuffers() override;
+        void Quit() override;
 
-		bool ShouldQuit() const override;
+        void SwapBuffers() override;
 
-		float GetTime() const override;
+        bool ShouldQuit() const override;
 
-	private:
-		bool m_ShoudlQuit = false;
-		SDL_Window* m_Window = nullptr;
-	};
+        float GetTime() const override;
+
+    private:
+        bool m_ShoudlQuit = false;
+        SDL_Window* m_Window = nullptr;
+    };
 }

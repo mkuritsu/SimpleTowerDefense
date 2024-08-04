@@ -16,7 +16,7 @@ namespace simpletdengine
 
     GLenum LayoutElementTypeToGLType(LayoutElementType type)
     {
-        switch(type)
+        switch (type)
         {
         case LayoutElementType::FLOAT:
             return GL_FLOAT;

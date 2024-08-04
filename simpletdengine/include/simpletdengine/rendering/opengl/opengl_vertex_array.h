@@ -4,15 +4,15 @@
 
 namespace simpletdengine
 {
-	class OpenGLVertexArray : public VertexArray
-	{
-	public:
-		OpenGLVertexArray();
+    class OpenGLVertexArray : public VertexArray
+    {
+    public:
+        OpenGLVertexArray();
 
-		~OpenGLVertexArray();
+        ~OpenGLVertexArray();
 
-		void Bind() const override;
+        void Bind() const override;
 
-		void SetLayout(const BufferLayout& layout) const override;
-	};
+        void SetLayout(const BufferLayout& layout) const override;
+    };
 }

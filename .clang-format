@@ -1,0 +1,6 @@
+BasedOnStyle: Microsoft
+PointerAlignment: Left
+AccessModifierOffset: -4
+NamespaceIndentation: All
+FixNamespaceComments: false
+ColumnLimit: 0

@@ -1,25 +1,36 @@
 #include <simpletdengine/game.h>
+#include <simpletdengine/rendering/renderer.h>
 
 namespace simpletdengine
 {
-	Game::Game(const GameWindowOptions& options) : m_Window(Window::Create(options.title, options.width, options.height)) { }
+    Game::Game(const GameWindowOptions& options)
+        : m_Window(Window::Create(options.title, options.width, options.height))
+    {
+        Renderer::Init(RenderingAPI::OPENGL);
+    }
 
-	void Game::Run()
-	{
-		Init();
-		while (!m_Window->ShouldQuit())
-		{
-			float delta = m_Window->GetTime();
-			m_Window->PollEvents();
-			Update(delta);
-			Draw(delta);
-			m_Window->SwapBuffers();
-		}
-	}
+    void Game::Run()
+    {
+        Init();
+        while (!m_Window->ShouldQuit())
+        {
+            float delta = m_Window->GetTime();
+            m_Window->PollEvents();
+            Update(delta);
+            Draw(delta);
+            m_Window->SwapBuffers();
+        }
+    }
 
-	void Game::Init() { }
+    void Game::Init()
+    {
+    }
 
-	void Game::Update(float delta) { }
+    void Game::Update(float delta)
+    {
+    }
 
-	void Game::Draw(float delta) { }
+    void Game::Draw(float delta)
+    {
+    }
 }

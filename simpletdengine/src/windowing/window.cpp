@@ -8,10 +8,10 @@
 
 namespace simpletdengine
 {
-	std::unique_ptr<Window> Window::Create(const std::string& title, uint32_t width, uint32_t height)
-	{
+    std::unique_ptr<Window> Window::Create(const std::string& title, uint32_t width, uint32_t height)
+    {
 #ifdef SIMPLETDENGINE_WINDOW_SDL
-		return std::make_unique<SDLWindow>(title, width, height);
+        return std::make_unique<SDLWindow>(title, width, height);
 #endif
-	}
+    }
 }

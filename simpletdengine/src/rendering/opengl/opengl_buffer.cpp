@@ -1,10 +1,10 @@
+#include <glad/glad.h>
 #include <simpletdengine/rendering/opengl/opengl_buffer.h>
 #include <simpletdengine/rendering/opengl/opengl_utils.h>
-#include <glad/glad.h>
 
 namespace simpletdengine
 {
-    OpenGLBuffer::OpenGLBuffer(BufferType type, void* data, size_t size) : Buffer(type)
+    OpenGLBuffer::OpenGLBuffer(BufferType type, const void* data, size_t size) : Buffer(type)
     {
         glGenBuffers(1, &m_ID);
         Bind();

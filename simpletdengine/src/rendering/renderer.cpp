@@ -1,6 +1,6 @@
-#include <simpletdengine/rendering/renderer.h>
-#include <simpletdengine/rendering/opengl/opengl_graphics_api.h>
 #include <cassert>
+#include <simpletdengine/rendering/opengl/opengl_graphics_api.h>
+#include <simpletdengine/rendering/renderer.h>
 
 namespace simpletdengine
 {
@@ -20,5 +20,12 @@ namespace simpletdengine
     {
         assert(s_GraphicsAPI != nullptr);
         return s_GraphicsAPI;
+    }
+
+    void Renderer::Draw(const std::shared_ptr<VertexArray>& object, uint32_t indicesCount, const std::shared_ptr<Shader>& shader)
+    {
+        shader->Bind();
+        object->Bind();
+        s_GraphicsAPI->Draw(indicesCount);
     }
 }
