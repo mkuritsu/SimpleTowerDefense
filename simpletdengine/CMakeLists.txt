@@ -20,44 +20,41 @@ foreach(SUBDIR ${ENGINE_SUBDIRS})
 endforeach()
 
 set(ENGINE_SOURCES
-    src/rendering/opengl/opengl_buffer.cpp
+    src/filesystem/file_utils.cpp
     src/rendering/opengl/opengl_graphics_api.cpp
+    src/rendering/opengl/opengl_index_buffer.cpp
     src/rendering/opengl/opengl_shader.cpp
     src/rendering/opengl/opengl_utils.cpp
     src/rendering/opengl/opengl_vertex_array.cpp
-    src/rendering/buffer.cpp
+    src/rendering/opengl/opengl_vertex_buffer.cpp
     src/rendering/buffer_layout.cpp
-    src/rendering/layout_element.cpp
+    src/rendering/index_buffer.cpp
     src/rendering/renderer.cpp
+    src/rendering/vertex_buffer.cpp
+    src/rendering/vertex_array.cpp
     src/windowing/impl/sdl_window.cpp
     src/windowing/window.cpp
     src/game.cpp
 
-    include/simpletdengine/rendering/opengl/opengl_buffer.h
+    include/simpletdengine/filesystem/file_utils.h
     include/simpletdengine/rendering/opengl/opengl_graphics_api.h
+    include/simpletdengine/rendering/opengl/opengl_index_buffer.h
     include/simpletdengine/rendering/opengl/opengl_shader.h
     include/simpletdengine/rendering/opengl/opengl_utils.h
     include/simpletdengine/rendering/opengl/opengl_vertex_array.h
-    include/simpletdengine/rendering/buffer.h
+    include/simpletdengine/rendering/opengl/opengl_vertex_buffer.h
     include/simpletdengine/rendering/buffer_layout.h
     include/simpletdengine/rendering/graphics_api.h
-    include/simpletdengine/rendering/layout_element.h
+    include/simpletdengine/rendering/index_buffer.h
     include/simpletdengine/rendering/renderer.h
     include/simpletdengine/rendering/vertex_array.h
+    include/simpletdengine/rendering/vertex_buffer.h
     include/simpletdengine/windowing/impl/sdl_window.h
     include/simpletdengine/windowing/window.h
-    include/simpletdengine/defines.h
     include/simpletdengine/game.h
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ENGINE_SOURCES})
-
-foreach(FILE ${ENGINE_SOURCES})
-    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${FILE}")
-        message("Source file '${FILE}' not found creating it")
-        file(WRITE "${FILE}")
-    endif()
-endforeach()
 
 set(ENGINE_INCLUDES
     thirdparty/glad/include

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL3/SDL.h>
-#include <simpletdengine/defines.h>
+#include <cstdint>
 #include <simpletdengine/windowing/window.h>
 
 namespace simpletdengine
@@ -25,7 +25,7 @@ namespace simpletdengine
 
         bool ShouldQuit() const override;
 
-        float GetTime() const override;
+        uint64_t GetTime() const override;
 
     private:
         bool m_ShoudlQuit = false;

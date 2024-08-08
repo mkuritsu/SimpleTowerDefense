@@ -2,20 +2,22 @@
 
 namespace simpletdengine
 {
-    uint32_t BufferLayout::GetStride() const
-    {
-        return m_Stride;
-    }
-
+    LayoutElement::LayoutElement(LayoutElementType type, uint32_t count, size_t size) : type(type), count(count), size(size) { }
+    
     const std::vector<LayoutElement>& BufferLayout::GetElements() const
     {
         return m_Elements;
     }
 
-    template <> void BufferLayout::PushElement<float>(uint32_t count)
+    size_t BufferLayout::GetStride() const
     {
-        LayoutElement element(LayoutElementType::FLOAT, sizeof(float), count);
-        m_Elements.push_back(element);
-        m_Stride += element.GetCount() * element.GetSize();
+        return m_Stride;
+    }
+
+    template<>
+    void BufferLayout::PushElement<float>(uint32_t count)
+    {
+        m_Elements.emplace_back(LayoutElementType::FLOAT, count, sizeof(float));
+        m_Stride += sizeof(float) * count;
     }
 }

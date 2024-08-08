@@ -1,20 +1,22 @@
 #pragma once
 
 #include <cstdint>
-#include <string>
 
 namespace simpletdengine
 {
-    class Shader
+    class IndexBuffer
     {
     public:
+        IndexBuffer(size_t count);
+
+        size_t Count() const;
+
         virtual void Bind() const = 0;
 
         virtual void UnBind() const = 0;
 
-        virtual void SetInt(const std::string& uniform, int32_t value) const = 0;
-        
     protected:
         uint32_t m_ID;
+        size_t m_Count;
     };
 }

@@ -1,55 +1,46 @@
 #include <simpletdgame/simpletdgame.h>
-#include <simpletdengine/rendering/renderer.h>
-#include <fstream>
-#include <iostream>
-#include <sstream>
+#include <simpletdengine/rendering/graphics_api.h>
+#include <simpletdengine/filesystem/file_utils.h>
 
-static const float s_VBOData[] =
+static uint32_t s_IndexBufferData[] =
 {
-	-0.5f, 0.0f,
-	0.5f, 0.0f,
-	0.0f, 0.5f
+    0, 1, 2,
+    2, 3, 0
 };
 
-static const unsigned int s_IndexData[] =
+static float s_VertexBufferData[] =
 {
-	0, 1, 2
+    -0.5f, -0.5f,
+    0.5f, -0.5f,
+    0.5f, 0.5f,
+    -0.5f, 0.5f
 };
 
 namespace simpletdgame
 {
-	SimpleTowerDefense::SimpleTowerDefense(simpletdengine::GameWindowOptions options) : simpletdengine::Game(options) { }
+    SimpleTowerDefense::SimpleTowerDefense(simpletdengine::GameWindowOptions options) : simpletdengine::Game(options) { }
 
-	void SimpleTowerDefense::Init()
-	{
-		m_VertexArray = simpletdengine::Renderer::GetAPI()->CreateVertexArray();
-		m_VertexArray->Bind();
-		m_VertexBuffer = simpletdengine::Renderer::GetAPI()->CreateBuffer(simpletdengine::BufferType::VERTEX_BUFFER, s_VBOData, sizeof(s_VBOData));
-		m_VertexBuffer->Bind();
-		simpletdengine::BufferLayout layout;
-		layout.PushElement<float>(2);
-		m_VertexArray->SetLayout(layout);
-		m_IndexBuffer = simpletdengine::Renderer::GetAPI()->CreateBuffer(simpletdengine::BufferType::INDEX_BUFFER, s_IndexData, sizeof(s_IndexData));
-		m_IndexBuffer->Bind();
+    void SimpleTowerDefense::Init()
+    {
+        const std::unique_ptr<simpletdengine::GraphicsAPI>& api = GetRenderer().GetAPI();
+        m_IndexBuffer = api->CreateIndexBuffer(sizeof(s_IndexBufferData), s_IndexBufferData, sizeof(s_IndexBufferData) / sizeof(uint32_t));
+        m_VertexArray = api->CreateVertexArray();
+        simpletdengine::BufferLayout layout;
+        layout.PushElement<float>(2);
+        m_VertexBuffer = api->CreateVertexBufer(sizeof(s_VertexBufferData), s_VertexBufferData, layout);
+        m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+        m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+        std::string vertex = simpletdengine::ReadTextFile("assets/basic.vert");
+        std::string fragment = simpletdengine::ReadTextFile("assets/basic.frag");
+        m_Shader = api->CreateShader(vertex, fragment);
+    }
 
-		std::ifstream vertexFile("assets/basic.vert");
-		std::stringstream ss;
-		ss << vertexFile.rdbuf();
-		std::string vertexSource = ss.str();
-		ss.clear();
-		std::ifstream fragmentFile("asserts/basic.frag");
-		ss << fragmentFile.rdbuf();
-		std::string fragmentSource = ss.str();
-		m_Shader = simpletdengine::Renderer::GetAPI()->CreateShader(vertexSource, fragmentSource);
-	}
+    void SimpleTowerDefense::Update(float delta)
+    {
+    }
 
-	void SimpleTowerDefense::Update(float delta)
-	{
-
-	}
-
-	void SimpleTowerDefense::Draw(float delta)
-	{
-		simpletdengine::Renderer::Draw(m_VertexArray, 3, m_Shader);
-	}
+    void SimpleTowerDefense::Draw(float delta)
+    {
+        GetRenderer().Draw(m_VertexArray, m_Shader);
+    }
 }

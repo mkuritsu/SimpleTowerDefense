@@ -1,20 +1,20 @@
 #pragma once
 
 #include <memory>
-#include <simpletdengine/defines.h>
 #include <simpletdengine/windowing/window.h>
+#include <simpletdengine/rendering/renderer.h>
 #include <string>
 
 namespace simpletdengine
 {
-    struct SIMPLETDENGINE_API GameWindowOptions
+    struct GameWindowOptions
     {
         std::string title = "simpletdengine";
         uint32_t width = 854;
         uint32_t height = 480;
     };
 
-    class SIMPLETDENGINE_API Game
+    class Game
     {
     public:
         Game(const GameWindowOptions& options);
@@ -28,7 +28,13 @@ namespace simpletdengine
 
         virtual void Draw(float delta);
 
+        uint32_t GetFPS() const;
+
+        const Renderer& GetRenderer() const;
+
     private:
         std::unique_ptr<Window> m_Window;
+        Renderer m_Renderer;
+        uint32_t m_FPS = 0;
     };
 }

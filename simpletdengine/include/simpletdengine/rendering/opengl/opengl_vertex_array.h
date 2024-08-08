@@ -11,8 +11,12 @@ namespace simpletdengine
 
         ~OpenGLVertexArray();
 
+        void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& buffer) override;
+
+        void SetIndexBuffer(const std::shared_ptr<IndexBuffer> buffer) override;
+
         void Bind() const override;
 
-        void SetLayout(const BufferLayout& layout) const override;
+        void UnBind() const override;
     };
 }

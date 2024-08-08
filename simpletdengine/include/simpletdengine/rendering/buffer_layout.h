@@ -1,22 +1,38 @@
 #pragma once
 
-#include <cstdint>
-#include <simpletdengine/rendering/layout_element.h>
 #include <vector>
+#include <cstdint>
+#include <cstddef>
+#include <stdexcept>
 
 namespace simpletdengine
 {
+    enum class LayoutElementType
+    {
+        FLOAT
+    };
+
+    struct LayoutElement
+    {
+        LayoutElementType type;
+        uint32_t count;
+        size_t size;
+
+        LayoutElement(LayoutElementType type, uint32_t count, size_t size);
+    };
+
     class BufferLayout
     {
     public:
-        uint32_t GetStride() const;
-
         const std::vector<LayoutElement>& GetElements() const;
 
-        template <typename T> void PushElement(uint32_t count);
+        size_t GetStride() const;
+
+        template<typename T>
+        void PushElement(uint32_t count);
 
     private:
-        uint32_t m_Stride = 0;
         std::vector<LayoutElement> m_Elements;
+        size_t m_Stride = 0;
     };
 }

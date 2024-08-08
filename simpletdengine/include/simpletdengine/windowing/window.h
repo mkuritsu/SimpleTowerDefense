@@ -2,12 +2,11 @@
 
 #include <cstdint>
 #include <memory>
-#include <simpletdengine/defines.h>
 #include <string>
 
 namespace simpletdengine
 {
-    class SIMPLETDENGINE_API Window
+    class Window
     {
     public:
         virtual uint32_t GetWidth() const = 0;
@@ -22,7 +21,7 @@ namespace simpletdengine
 
         virtual bool ShouldQuit() const = 0;
 
-        virtual float GetTime() const = 0;
+        virtual uint64_t GetTime() const = 0;
 
         static std::unique_ptr<Window> Create(const std::string& title, uint32_t width, uint32_t height);
     };

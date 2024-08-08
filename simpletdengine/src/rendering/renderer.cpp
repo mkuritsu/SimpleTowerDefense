@@ -1,31 +1,30 @@
-#include <cassert>
-#include <simpletdengine/rendering/opengl/opengl_graphics_api.h>
 #include <simpletdengine/rendering/renderer.h>
+#include <simpletdengine/rendering/opengl/opengl_graphics_api.h>
+#include <stdexcept>
 
 namespace simpletdengine
 {
-    std::unique_ptr<GraphicsAPI> Renderer::s_GraphicsAPI = nullptr;
-
-    void Renderer::Init(RenderingAPI api)
+    Renderer::Renderer(RenderingAPI api)
     {
         switch (api)
         {
         case RenderingAPI::OPENGL:
-            s_GraphicsAPI = std::make_unique<OpenGLGraphicsAPI>();
+            m_GraphicsAPI = std::make_unique<OpenGLGraphicsAPI>();
             break;
+        default:
+            throw std::runtime_error("Unsupported rendering api!");
         }
     }
 
-    const std::unique_ptr<GraphicsAPI>& Renderer::GetAPI()
+    const std::unique_ptr<GraphicsAPI>& Renderer::GetAPI() const
     {
-        assert(s_GraphicsAPI != nullptr);
-        return s_GraphicsAPI;
+        return m_GraphicsAPI;
     }
 
-    void Renderer::Draw(const std::shared_ptr<VertexArray>& object, uint32_t indicesCount, const std::shared_ptr<Shader>& shader)
+    void Renderer::Draw(const std::shared_ptr<VertexArray>& object, const std::shared_ptr<Shader>& shader) const
     {
         shader->Bind();
         object->Bind();
-        s_GraphicsAPI->Draw(indicesCount);
+        m_GraphicsAPI->DrawElements(object->GetIndexBuffer()->Count());
     }
 }

@@ -2,10 +2,12 @@
 
 #include <memory>
 #include <simpletdengine/rendering/graphics_api.h>
+#include <simpletdengine/rendering/vertex_array.h>
+#include <simpletdengine/rendering/shader.h>
 
 namespace simpletdengine
 {
-    enum RenderingAPI
+    enum class RenderingAPI
     {
         OPENGL
     };
@@ -13,13 +15,13 @@ namespace simpletdengine
     class Renderer
     {
     public:
-        static void Init(RenderingAPI api);
+        Renderer(RenderingAPI api);
 
-        static const std::unique_ptr<GraphicsAPI>& GetAPI();
+        const std::unique_ptr<GraphicsAPI>& GetAPI() const;
 
-        static void Draw(const std::shared_ptr<VertexArray>& object, uint32_t indicesCount, const std::shared_ptr<Shader>& shader);
+        void Draw(const std::shared_ptr<VertexArray>& object, const std::shared_ptr<Shader>& shader) const;
 
     private:
-        static std::unique_ptr<GraphicsAPI> s_GraphicsAPI;
+        std::unique_ptr<GraphicsAPI> m_GraphicsAPI;
     };
 }

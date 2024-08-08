@@ -1,6 +1,5 @@
 #pragma once
 
-#include <glad/glad.h>
 #include <simpletdengine/rendering/shader.h>
 #include <string>
 
@@ -15,7 +14,8 @@ namespace simpletdengine
 
         void Bind() const override;
 
-    private:
-        uint32_t CreateShader(GLenum type, const std::string& source) const;
+        void UnBind() const override;
+
+        void SetInt(const std::string& uniform, int32_t value) const override;
     };
 }

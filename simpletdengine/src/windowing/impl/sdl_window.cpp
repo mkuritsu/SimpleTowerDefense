@@ -15,12 +15,16 @@ namespace simpletdengine
         {
             throw std::runtime_error("Failed to create SDL window!");
         }
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
         SDL_GLContext glContext = SDL_GL_CreateContext(m_Window);
         if (!glContext)
         {
             throw std::runtime_error("Failed to create OpenGL context!");
         }
         SDL_GL_MakeCurrent(m_Window, glContext);
+        SDL_GL_SetSwapInterval(0);
         if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
         {
             throw std::runtime_error("Failed to load OpenGL functions!");
@@ -74,8 +78,8 @@ namespace simpletdengine
         return m_ShoudlQuit;
     }
 
-    float SDLWindow::GetTime() const
+    uint64_t SDLWindow::GetTime() const
     {
-        return SDL_GetTicks() / 1000.0f;
+        return SDL_GetTicks();
     }
 }
